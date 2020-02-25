@@ -131,8 +131,8 @@ quickly able to apply some constants to draw the **tall & narrow** spirals we wa
 ```hbs
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((1) * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((1) * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="10" fill="rgb(0,100,0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
@@ -148,24 +148,24 @@ Out of the spirals we've seen lets pick one of the interesting ones and add it t
 ```hbs
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5) * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5) * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="10" fill="rgb(0,100,0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
 
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5) * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5) * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="10" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
 
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5) * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5) * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
@@ -186,8 +186,8 @@ by wrapping our last svg snippet in another each block:
 <table>{{#each i in range(0, 4) }}
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((1)   * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1+i) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((1)   * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1+i) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
@@ -210,8 +210,8 @@ Let's go back to our App and embody our multi spiral viewer in a new `multi.html
 {{#each i in range(0, 4) }}
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5)   * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1+i) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5)   * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1+i) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
@@ -259,8 +259,8 @@ arriving at a combination we like:
 {{#each i in range(0, 4) }}
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5)   * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1+i) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5)   * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1+i) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1">
     <animate attributeName="fill" values="green;yellow;red;green" dur="{{it%10}}s" repeatCount="indefinite" />
     <animate attributeName="opacity" values="1;.5;1" dur="5s" repeatCount="indefinite" />
@@ -283,7 +283,7 @@ Although hard to capture in a screenshot, we can sit back and watch our living, 
 Lets expand our App beyond these static Spirals by enabling some navigation, this is easily done by adding the snippet below on the top of the home page:
 
 ```hbs
-{{ from ?? 1 | toInt | assignTo: from }}
+{{ from ?? 1 | toInt |> to => from }}
 <div style="text-align:right;margin:-54px 0 30px 0">
   {{#if from > 1}} <a href="?from={{ max(from-1,0) }}" title="{{max(from-1,0)}}">previous</a> |{{/if}}
   {{from}} | <a href="?from={{ from+1 }}" title="{{max(from-1,0)}}">next</a>
@@ -293,7 +293,7 @@ Lets expand our App beyond these static Spirals by enabling some navigation, thi
 Whilst the `multi.html` and `animated.html` pages can skip by 4:
 
 ```hbs
-{{ from ?? 1 | toInt | assignTo: from }}
+{{ from ?? 1 | toInt |> to => from }}
 <div style="text-align:right;margin:-54px 0 30px 0">
   {{#if from > 1}} <a href="?from={{ max(from-4,0) }}" title="{{max(from-1,0)}}">previous</a> |{{/if}}
   {{from}} | <a href="?from={{ from+4 }}" title="{{max(from-1,0)}}">next</a>
@@ -305,8 +305,8 @@ Then changing the `index.html` SVG fragment to use the `from` value on the y-axi
 ```hbs
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5)    * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((from) * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5)    * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((from) * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="10" fill="rgb(0,100,0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>
@@ -318,8 +318,8 @@ Whilst the `multi.html` and `animated.html` pages can use it in its `range(from,
 {{#each i in range(from, 4) }}
 <svg height="640" width="240">
 {{#each range(180) }}
-  {{ 120 + 100 * cos((5) * it * 0.02827) | assignTo: x }}
-  {{ 320 + 300 * sin((1+i)  * it * 0.02827) | assignTo: y }}
+  {{ 120 + 100 * cos((5) * it * 0.02827) |> to => x }}
+  {{ 320 + 300 * sin((1+i)  * it * 0.02827) |> to => y }}
   <circle cx="{{x}}" cy="{{y}}" r="{{it*0.1}}" fill="rgb(0,{{it*1.4}},0)" stroke="black" stroke-width="1"/>
 {{/each}} 
 </svg>

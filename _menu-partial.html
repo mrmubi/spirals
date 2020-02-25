@@ -1,4 +1,4 @@
-{{ it | withoutKeys('it') | toList | assignTo: links }}
+{{ it |> withoutKeys('it') | toList |> to => links }}
 
 <style>
 .navbar {
@@ -48,7 +48,7 @@
 
         <ul class="navbar-nav">
             {{#each links}}
-            <li {{ {active: matchesPathInfo(Key)} | htmlClass }}>
+            <li {{ {active: matchesPathInfo(Key)} |> htmlClass }}>
                 <a class="nav-link" href="{{Key}}">{{Value}}</a>
             </li>
             {{/each}}
