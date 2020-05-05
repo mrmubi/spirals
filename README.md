@@ -2,7 +2,7 @@
 
 Explore and generate different Spirals with SVG
 
-[![](https://raw.githubusercontent.com/NetCoreApps/TemplatePages/master/src/wwwroot/assets/img/screenshots/spirals.png)](http://spirals.web-app.io)
+[![](https://raw.githubusercontent.com/ServiceStack/sharpscript/master/src/wwwroot/assets/img/screenshots/spirals.png)](http://spirals.web-app.io)
 
 ## Install
 
@@ -15,12 +15,12 @@ Run as a Desktop App (Windows only):
 
 Run as a .NET Core Web App (Windows, macOS, Linux):
 
-    $ dotnet tool install -g web
+    $ dotnet tool install -g x
 
     $ web install spirals
-    $ cd spirals && web
+    $ cd spirals && x
 
-> Requires [.NET Core 2.1](https://www.microsoft.com/net/download/dotnet-core/2.1).
+> Requires [.NET Core 3.1](https://www.microsoft.com/net/download/dotnet-core/3.1).
 
 ## The Making of Spirals
 
@@ -41,7 +41,7 @@ Then create a folder for our app called `spirals` and initialize and empty Web A
     $ cd spirals && app init
 
 This generates a minimal Web App but you could also start from any of the more complete 
-[Web App Templates](http://templates.servicestack.net/docs/web-apps#getting-started).
+[Web App Templates](http://sharpscript.net/docs/sharp-apps#getting-started).
 
 Now let's open the folder up for editing in our preferred text editor, VS Code:
 
@@ -451,4 +451,4 @@ App that students can have fun experimenting with and complete.
 
 ## Learn More
 
-See [templates.servicestack.net/docs/web-apps](http://templates.servicestack.net/docs/web-apps) to learn about ServiceStack .NET Core 2.1 Web Apps.
+See [sharpscript.net/docs/sharp-apps](http://sharpscript.net/docs/sharp-apps) to learn about ServiceStack .NET Core 3.1 Sharp Apps.
